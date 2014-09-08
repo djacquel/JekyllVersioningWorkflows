@@ -12,3 +12,5 @@ twitter_username: jekyllrb
 github_username: jekyll
 markdown: kramdown
 destination: _site
+
+exclude: [ Rakefile ]
