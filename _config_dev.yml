@@ -1,0 +1,7 @@
+# local config
+# use with : jekyll build --config _config.yml,_config_dev.yml
+baseurl: "/jekyll/JekyllComplexWorkflow/_site/"
+url: "http://test.dev"
+
+sass:
+  style: :nested
