@@ -70,7 +70,7 @@ Once you've set the parameters in the head of the Rakefile, you can launch the i
 
  2. in the console do `cd pathTo/yourJekyllSource`
 
- 3. then `wget https://raw.githubusercontent.com/djacquel/JekyllComplexWorkflow/master/Rakefile` will save the Rakefile in your repository.
+ 3. then `wget https://raw.githubusercontent.com/djacquel/JekyllVersioningWorkflows/master/Rakefile` will save the Rakefile in your repository.
 
  4. edit the Rakefile and set parameters.
 

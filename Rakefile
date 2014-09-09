@@ -35,7 +35,7 @@
 #
 # ## Troubleshooting
 #
-# If you cannot troubleshoot by yourself, open an issue on Github https://github.com/djacquel/JekyllComplexWorkflow/issues
+# If you cannot troubleshoot by yourself, open an issue on Github https://github.com/djacquel/JekyllVersioningWorkflows/issues
 #
 #
 #    CONTRIBUTORS ARE WELCOME
@@ -56,7 +56,7 @@ GithubUserName   = 'djacquel'
 
 # Github target repository
 # you must be allowed to contribute to this repository
-GithubRepository = 'JekyllComplexWorkflow'
+GithubRepository = 'JekyllVersioningWorkflows'
 
 # User / Organization sources branch
 UODefaultSourceBranch = 'sources'
