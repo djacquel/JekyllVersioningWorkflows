@@ -1,118 +1,120 @@
-
-# Jekyll workflows
+---
+title: Jekyll versioning workflows
+---
+# Jekyll versioning workflows
 
 You have two options when it comes to host a Jekyll site on Github pages :
 
+ - simple versioning : your code is in one repository branch
+ - multi-branch versioning : code and site in two separate branches
+
+## Which versioning workflow suits my needs ?
+
+You just have to ask few questions :
+
+ - do I need plugins to render my site ?
+ - do I need extra processing like Gulp task or Rake tasks ?
+ - do I need to push in several locations (integration, continuous integration) ?
+
+If the answer to any of this questions is **yes** then you should use multi-branch versioning. Otherwise, stay with the basic versioning.
+
 ## 1. Basic workflow
 
-If you don't need to run plugins or special tasks (grunt, gulp, ...) in order to get your site running.
+You host your site on Github pages and just have to push your code :
 
-You can keep the default configuration and simply push your sources to **master branch**  for user repository (userName.github.io) or to **gh-pages branch** for project repositories (userName.github.io/projectName).
+ - in **master branch** for user repository at **https://github.com/userName/userName.github.io** (url : http://userName.github.io) 
+ - in **gh-pages branch** for project repositories at **https://github.com/userName/repositoryName** (url : userName.github.io/projectName).
 
 Just need a `git push origin master` or `git push origin gh-pages` and Github will build you site just fine.
 
-This is the simplest worflow.
+This is the simplest versioning worflow.
 
 ## 2. Complex workflow
 
-  If you need some plugins (generator, tag, ...) or build tasks (gulp, grunt, ...) that will not run on gh-pages.
+  If you need some plugins (generator, tag, ...) or build tasks (gulp, grunt, ...) they will not run on gh-pages. So, you will have to build you site before pushing the resulting pages on github (or on any server that can serve static pages).
 
-  You will have to publish your Jekyll sources in a branch and your build result in a separate branch.
+  For a **User/Organization** site, it will be **master branch** for the site build, and **sources branch** (or any name you like) for the code.
+  It will be versioned at **github.com/userName/userName.github.io** and hosted at **https://userName.github.io**.
 
-  For a User / Organization site, it will be **master** for the site build, and **sources** (or any name you like) for the code.
-  A User / Organization site will be versioned at github.com/userName/userName.github.io and hosted at http://userName.github.io.
-
-  For a Project site, it will be **gh-pages** for the site build, and **master** (or any name you like) for the code.
-  A Project site will be versioned at github.com/userName/projectName and hosted at http://userName.github.io/projectName.
+  For a **Project site**, it will be **gh-pages branch** for the site build, and **master branch** (or any name you like) for the code.
+  A Project site will be versioned at **github.com/userName/projectName** and hosted at **https://userName.github.io/projectName**.
 
   Both repository can also have a [custom domain name](https://help.github.com/articles/about-custom-domains-for-github-pages-sites), but it's another story.
 
-### User or organization repository
 
-In order to publish a User/Organization site, source code will be versioned in a **source** branch and site code in **master** branch.
+# How can I automate this setup and the deploy task ?
 
-Complete setup will be :
+Check out the [Rakefile](https://github.com/djacquel/JekyllComplexWorkflow/blob/master/Rakefile) !
+
+It can do :
+
+ - base install with multi-branch versionig
+ - launch build tasks (rake, gulp)
+ - deploy code to various locations (local, continuous integration, production)
+ - order pizzas
+
+# How does this Rakefile do the base install for me ?
+
+In order to publish :
+
+ - a User/Organization site : source code will be versioned in a **source** branch and site code in **master** branch.
+ - a Project site : source code will be versioned in a **source** branch and site code in **gh-pages** branch.
+
+Once you've set the parameters in the head of the Rakefile, you can launch the installation by doing :
 
  1. create a repository on github (eg: https://github.com/userName/userName.github.io)
 
- 2. go to command line and `cd pathTo/yourJekyllSource`
+ 2. in the console do `cd pathTo/yourJekyllSource`
 
- 3. `git init && git remote add origin git@github.com:userName/userName.github.io.git`
+ 3. then `wget https://raw.githubusercontent.com/djacquel/JekyllComplexWorkflow/master/Rakefile` will save the Rakefile in your repository.
 
- 4. `jekyll new .` creates your code base
+ 4. edit the Rakefile and set parameters.
 
- 5. in **_config.yml**, set the baseurl parameter to **baseurl: ''**
+ 5. in the console do : `rake setup`
 
- 6. in **.gitignore** add **_site**, it will be versioned in the other branch
+ And your done !
 
- 7. `jekyll build` will create the destination folder and build site.
+## Setup explanation
 
- 8. `git checkout -b sources`
+In the background, and depending if we deal with a User/Organization (**UO**) site or a Project site (**P**), `rake setup` does :
 
- 9. `git add * && git commit -m "jekyll base sources"` commit your source code
+ 1. `git init`
 
- 10. `git push origin sources` push your sources in the **sources** branch
+ 2. `git remote add origin git@github.com:userName/userName.github.io.git` (**UO**) or `git remote add origin git@github.com:userName/repositoryName.git` (**P**)
 
- 11. `cd site`
+ 3. `jekyll new .` creates your code base
 
- 12. `touch .nojekyll`, this file tells gh-pages that there is no need to build
+ 4. in **_config.yml**, set the baseurl parameter to **baseurl: ''** (**UO**) or **baseurl: '/repositoryName'** (**P**)
 
- 13. `git init && git remote add origin git@github.com:userName/userName.github.io.git`
+ 5. in **.gitignore** add **_site**, it will be versioned in the other branch
 
- 14. `git checkout master`
+ 6. `jekyll build` will create the destination folder and build site.
 
- 15. `git add * && git commit -m "jekyll first build"` commit your site code
+ 7. `git checkout -b sources` (**UO**) or `git checkout master` (**P**)
 
- 16. `git push origin master`
+ 8. `git add -A`
 
+ 9. `git commit -m "jekyll base sources"` commit your source code
 
-### Project repository
-
-This is the way I do it for a project repository (a site living at **http://userName.github.io/repositoryName**) :
-
- 1. create a repository on github (eg: https://github.com/userName/repositoryName)
-
- 2. go to command line and `cd pathTo/yourJekyllSource`
-
- 3. `git init && git remote add origin git@github.com:userName/repositoryName.git`
-
- 4. `jekyll new .` creates your code base
-
- 5. in **_config.yml**, set the baseurl parameter to **baseurl: '/repositoryName'**
-
- 6. in **.gitignore** add **_site**, it will be versioned in the other branch
-
- 7. `jekyll build` will create the destination folder and build site.
-
- 8. `git checkout master`
-
- 9. `git add * && git commit -m "jekyll base sources"` commit your source code
-
- 10. `git push origin master` push your sources in the **master** branch
+ 10. `git push origin sources` (**UO**) or `git push origin master` (**P**) push your sources in the appropriate branch
 
  11. `cd _site`
 
  12. `touch .nojekyll`, this file tells gh-pages that there is no need to build
 
- 13. `git init && git remote add origin git@github.com:userName/repositoryName.git`
+ 13. `git init` init the repository
 
- 14. `git checkout -b gh-pages`
+ 14. `git remote add origin git@github.com:userName/userName.github.io.git` (**UO**) or `git remote add origin git@github.com:userName/repositoryName.git` (**P**)
 
- 15. `git add * && git commit -m "jekyll first build"` commit your site code
+ 15. `git checkout master` (**UO**) or `git checkout -b gh-pages` (**P**) put this repository on the appropriate branch
 
- 16. `git push origin gh-pages`
+ 16. `git add -A`
 
-And your good to go !
+ 17. `git commit -m "jekyll first build"` commit your site code
+
+ 18. `git push origin master` (**UO**) or `git push origin gh-pages` (**P**)
 
 
-## Automating
 
-Check to Rakefile !
 
-It can do :
 
- - base install with the described workflow
- - deploy code
- - build site
- - build site for development environment
- - order pizzas
