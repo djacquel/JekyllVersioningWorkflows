@@ -123,6 +123,7 @@ task :build do |t|
   system_call('jekyll build')
 end
 
+desc "Deploy code and site in appropriate branches"
 task :deploy do |t|
 
   init
