@@ -1,6 +1,10 @@
 ---
 title: Jekyll versioning workflows
+layout: page
 ---
+
+&nbsp;
+
 # Jekyll versioning workflows
 
 You have two options when it comes to host a Jekyll site on Github pages :
@@ -44,7 +48,7 @@ This is the simplest versioning worflow.
 
 # How can I automate this setup and the deploy task ?
 
-Check out the [Rakefile](https://github.com/djacquel/JekyllComplexWorkflow/blob/master/Rakefile) !
+Check out the [Rakefile](https://github.com/djacquel/JekyllVersioningWorkflows/blob/master/Rakefile) !
 
 It can do :
 
@@ -114,7 +118,15 @@ In the background, and depending if we deal with a User/Organization (**UO**) si
 
  18. `git push origin master` (**UO**) or `git push origin gh-pages` (**P**)
 
+# Other tasks included
 
+- rake build : Build Jekyll with production configuration
+- rake deploy : Deploy code and site in appropriate branches on Github
+- rake dev : Build Jekyll with development configuration
+- rake list : list tasks
+- rake setup : Do the base setup for a repository with complex workflow
+- rake w : Build Jekyll with development configuration and watch
 
+# Contributors welcome
 
-
+Feel free to [fork my repository](https://github.com/djacquel/JekyllVersioningWorkflows) if you want to enrich the code.
