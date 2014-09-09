@@ -1,6 +1,6 @@
 # local config
 # use with : jekyll build --config _config.yml,_config_dev.yml
-baseurl: "/jekyll/JekyllComplexWorkflow/_site/"
+baseurl: "/jekyll/workflow/_site"
 url: "http://test.dev"
 
 sass:
