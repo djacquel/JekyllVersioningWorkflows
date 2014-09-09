@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Multi-branch versioning with Jekyll made easy</title>
+    <title>Jekyll versioning workflows</title>
     <meta name="description" content="Why and how to setup multi-branch versioning with Jekyll">
 
     <link rel="stylesheet" href="/JekyllVersioningWorkflows/css/main.css">
-    <link rel="canonical" href="http://djacquel.github.io/JekyllVersioningWorkflows/JekyllVersioningWorkflows/">
+    <link rel="canonical" href="http://djacquel.github.io/JekyllVersioningWorkflows/JekyllVersioningWorkflows/readme.html">
 </head>
 
 
@@ -29,8 +29,14 @@
 
     <div class="page-content">
       <div class="wrapper">
-        
-<p>&nbsp;</p>
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Jekyll versioning workflows</h1>
+  </header>
+
+  <article class="post-content">
+    <p> </p>
 
 <h1 id="jekyll-versioning-workflows">Jekyll versioning workflows</h1>
 
@@ -68,7 +74,7 @@
 
 <h2 id="complex-workflow">2. Complex workflow</h2>
 
-<p>If you need some plugins (generator, tag, &#8230;) or build tasks (gulp, grunt, &#8230;) they will not run on gh-pages. So, you will have to build you site before pushing the resulting pages on github (or on any server that can serve static pages).</p>
+<p>If you need some plugins (generator, tag, …) or build tasks (gulp, grunt, …) they will not run on gh-pages. So, you will have to build you site before pushing the resulting pages on github (or on any server that can serve static pages).</p>
 
 <p>For a <strong>User/Organization</strong> site, it will be <strong>master branch</strong> for the site build, and <strong>sources branch</strong> (or any name you like) for the code.
   It will be versioned at <strong>github.com/userName/userName.github.io</strong> and hosted at <strong>https://userName.github.io</strong>.</p>
@@ -76,7 +82,7 @@
 <p>For a <strong>Project site</strong>, it will be <strong>gh-pages branch</strong> for the site build, and <strong>master branch</strong> (or any name you like) for the code.
   A Project site will be versioned at <strong>github.com/userName/projectName</strong> and hosted at <strong>https://userName.github.io/projectName</strong>.</p>
 
-<p>Both repository can also have a <a href="https://help.github.com/articles/about-custom-domains-for-github-pages-sites">custom domain name</a>, but it&#8217;s another story.</p>
+<p>Both repository can also have a <a href="https://help.github.com/articles/about-custom-domains-for-github-pages-sites">custom domain name</a>, but it’s another story.</p>
 
 <h1 id="how-can-i-automate-this-setup-and-the-deploy-task-">How can I automate this setup and the deploy task ?</h1>
 
@@ -100,7 +106,7 @@
   <li>a Project site : source code will be versioned in a <strong>source</strong> branch and site code in <strong>gh-pages</strong> branch.</li>
 </ul>
 
-<p>Once you&#8217;ve set the parameters in the head of the Rakefile, you can launch the installation by doing :</p>
+<p>Once you’ve set the parameters in the head of the Rakefile, you can launch the installation by doing :</p>
 
 <ol>
   <li>
@@ -123,7 +129,7 @@
   </li>
 </ol>
 
-<p>And it&#8217;s done !</p>
+<p>And it’s done !</p>
 
 <h2 id="setup-explanation">Setup explanation</h2>
 
@@ -140,7 +146,7 @@
     <p><code>jekyll new .</code> creates your code base</p>
   </li>
   <li>
-    <p>in <strong>_config.yml</strong>, set the baseurl parameter to <strong>baseurl: &#8216;&#8216;</strong> (<strong>UO</strong>) or <strong>baseurl: &#8216;/repositoryName&#8217;</strong> (<strong>P</strong>)</p>
+    <p>in <strong>_config.yml</strong>, set the baseurl parameter to <strong>baseurl: ‘‘</strong> (<strong>UO</strong>) or <strong>baseurl: ‘/repositoryName’</strong> (<strong>P</strong>)</p>
   </li>
   <li>
     <p>in <strong>.gitignore</strong> add <strong>_site</strong>, it will be versioned in the other branch</p>
@@ -201,6 +207,9 @@
 
 <p>Feel free to <a href="https://github.com/djacquel/JekyllVersioningWorkflows">fork my repository</a> if you want to enrich the code.</p>
 
+  </article>
+
+</div>
 
       </div>
     </div>

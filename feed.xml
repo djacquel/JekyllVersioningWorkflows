@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your awesome title</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</description>
-    <link>http://djacquel.github.io/JekyllComplexWorkflow/JekyllComplexWorkflow/</link>
-    <atom:link href="http://djacquel.github.io/JekyllComplexWorkflow/JekyllComplexWorkflow/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 08 Sep 2014 22:38:18 +0200</pubDate>
-    <lastBuildDate>Mon, 08 Sep 2014 22:38:18 +0200</lastBuildDate>
+    <title>Multi-branch versioning with Jekyll made easy</title>
+    <description>Why and how to setup multi-branch versioning with Jekyll</description>
+    <link>http://djacquel.github.io/JekyllVersioningWorkflows/JekyllVersioningWorkflows/</link>
+    <atom:link href="http://djacquel.github.io/JekyllVersioningWorkflows/JekyllVersioningWorkflows/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 09 Sep 2014 18:49:13 +0200</pubDate>
+    <lastBuildDate>Tue, 09 Sep 2014 18:49:13 +0200</lastBuildDate>
     <generator>Jekyll v2.3.0</generator>
     
       <item>
@@ -28,8 +27,8 @@
 
 </description>
         <pubDate>Tue, 09 Sep 2014 00:33:45 +0200</pubDate>
-        <link>http://djacquel.github.io/JekyllComplexWorkflow/JekyllComplexWorkflow/jekyll/update/2014/09/09/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://djacquel.github.io/JekyllComplexWorkflow/JekyllComplexWorkflow/jekyll/update/2014/09/09/welcome-to-jekyll.html</guid>
+        <link>http://djacquel.github.io/JekyllVersioningWorkflows/JekyllVersioningWorkflows/jekyll/update/2014/09/09/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://djacquel.github.io/JekyllVersioningWorkflows/JekyllVersioningWorkflows/jekyll/update/2014/09/09/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll</category>
