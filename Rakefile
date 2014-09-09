@@ -3,8 +3,11 @@
 # copyleft djacquel 2014
 # -------------------------------------------------------
 # This rake file helps the setup of a Jekyll install for complex workflow.
-# Tasks involving Jekyll plugins or tasks (grunt, ...) that are not 
+#
+#
+# - Tasks involving Jekyll plugins or tasks (grunt, ...) that are not 
 # supported by Github pages.
+# - 
 # -------------------------------------------------------
 #
 # ## Use
@@ -142,9 +145,15 @@ task :deploy do |t|
 end
 
 desc "Build Jekyll with development configuration"
-task :build_dev do |t|
+task :dev do |t|
   puts "Building with dev parameters"
   sh 'jekyll build --config _config.yml,_config_dev.yml --trace'
+end
+
+desc "Build Jekyll with development configuration and watch"
+task :w do |t|
+  puts "Building with dev parameters and watch"
+  sh 'jekyll build --config _config.yml,_config_dev.yml -w'
 end
 
 desc "list tasks"
