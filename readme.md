@@ -72,11 +72,13 @@ Once you've set the parameters in the head of the Rakefile, you can launch the i
 
  3. then `wget https://raw.githubusercontent.com/djacquel/JekyllVersioningWorkflows/master/Rakefile` will save the Rakefile in your repository.
 
- 4. edit the Rakefile and set parameters.
+ 4. be sure that you have the push permission on the Github repository
 
- 5. in the console do : `rake setup`
+ 5. edit the Rakefile and set parameters.
 
- And your done !
+ 6. in the console do : `rake setup`
+
+ And it's done !
 
 ## Setup explanation
 
