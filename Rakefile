@@ -5,15 +5,15 @@
 # This rake file helps the setup of a Jekyll install for complex workflow.
 #
 #
-# - Tasks involving Jekyll plugins or tasks (grunt, ...) that are not 
+# - Tasks involving Jekyll plugins or tasks (grunt, ...) that are not
 # supported by Github pages.
-# - 
+# -
 # -------------------------------------------------------
 #
 # ## Use
 #
 # ### Initial setup
-# 
+#
 # In order to setup you worflow :
 #
 # - create a Github repository
@@ -23,7 +23,7 @@
 # - then launch the install with *rake setup*
 #
 # ### Deploying
-# 
+#
 # When your happy with your code you can deploy with :
 #
 #    rake deploy
@@ -91,7 +91,7 @@ PSiteBranch  = 'gh-pages'# CANNOT be changed - DO NOT CHANGE THIS !
 
 ConfigFile   = '_config.yml'
 
-task :default => :build_dev
+task :default => :dev
 
 desc "Do the base setup for a repository with complex workflow"
 task :setup do |t|
@@ -104,11 +104,15 @@ task :setup do |t|
   # write Jekyll configuration file
   writeconfig
 
+  # create a .nojekyll file in order to instruct Github not to proccess
+  system_call( 'touch .nojekyll') )
+
   # build site for first time
   Rake::Task[:build].invoke
 
-  # create a .nojekyll file in order to instruct Github not to proccess
-  system_call( 'touch ' + File.join(SiteFileFolder, '.nojekyll') )
+  puts 'INTERUPT !!!!!'
+  exit(999)
+
 
   # connect local files with Github repository
   connect_sources
@@ -191,9 +195,20 @@ end
 # Create Jekyll sources in root folder"
 def jekyllnew
 
-  # VERY DANGEROUS - NEED SOME CHECKS
+  @curPath = File.dirname(__FILE__)
+
+  # ASK USER BEFORE REMOVING FILES
+  if ask("\nThis will remove ALL your files and create a new Jekyll site in #{@curPath}. \nContinue ?", ['yes','no']) == 'yes'
+    puts "Ok, lets go"
+  else
+    puts'Exiting rake task'
+    exit(999)
+  end
+
   # remove old files except this Rakefile
   Dir['*', '\.git*', "\.sass*"].reject{ |f| f['Rakefile'] }.each do |filename|
+    # be sure that we work in the path
+    filename = sanitized_path(@curPath, filename)
     puts "removing old files : #{filename}"
     rm_rf filename
   end
@@ -368,5 +383,23 @@ def ask(message, valid_options = [])
 end
 
 
+# from Jekyll
+# Ensures the questionable path is prefixed with the base directory
+# and prepends the questionable path with the base directory if false.
+#
+# base_directory - the directory with which to prefix the questionable path
+# questionable_path - the path we're unsure about, and want prefixed
+#
+# Returns the sanitized path.
+def sanitized_path(base_directory, questionable_path)
+  return base_directory if base_directory.eql?(questionable_path)
 
+  clean_path = File.expand_path(questionable_path, "/")
+  clean_path = clean_path.sub(/\A\w\:\//, '/')
 
+  unless clean_path.start_with?(base_directory.sub(/\A\w\:\//, '/'))
+    File.join(base_directory, clean_path)
+  else
+    clean_path
+  end
+end
